@@ -25,7 +25,6 @@ data "aws_ami" "Amazon-linux2" {
 }
 
 resource "aws_instance" "web-1" {
-    depends_on = [aws_key_pair.deployer]
   ami           = data.aws_ami.Amazon-linux2.id
   instance_type = "t2.micro"
   availability_zone = "us-east-1a"
@@ -43,7 +42,6 @@ output ec2-1 {
 }
 
 resource "aws_instance" "web-2" {
-    depends_on = [aws_key_pair.deployer]
   ami           = data.aws_ami.Amazon-linux2.id
   instance_type = "t2.micro"
   availability_zone = "us-east-1b"
@@ -61,7 +59,6 @@ output ec2-2 {
 }
 
 resource "aws_instance" "web-3" {
-    depends_on = [aws_key_pair.deployer]
   ami           = data.aws_ami.Amazon-linux2.id
   instance_type = "t2.micro"
   availability_zone = "us-east-1c"
@@ -73,6 +70,7 @@ resource "aws_instance" "web-3" {
     Name = "web-3"
   }
 }
+
 output ec2-3 {
     value = aws_instance.web-3.public_ip
 }
